@@ -20,27 +20,18 @@ This project proposes a **layered analytics framework** that analyzes multivaria
 
 The pipeline processes high-dimensional avionics telemetry across three distinct analytical layers:
 
-```
-Telemetry Logs (.npy)
-       │
-       ▼
-┌─────────────────────────────────────────────────────────┐
-│ Layer 1: Statistical Boundary Monitoring (3-Sigma Rule) │
-└──────────────────────────┬──────────────────────────────┘
-                           │
-       ▼───────────────────┴──────────────────────────────┐
-│ Layer 2: Multivariate Anomaly Detection (Isolation Forest)
-└──────────────────────────┬──────────────────────────────┘
-                           │
-       ▼───────────────────┴──────────────────────────────┐
-│ Layer 3: Temporal Degradation Analysis (Rolling Variance)
-└──────────────────────────┬──────────────────────────────┘
-                           │
-                           ▼
-          ┌──────────────────────────────────┐
-          │ Unified Health Score Aggregator  │
-          │         (Score: 0 - 100)         │
-          └──────────────────────────────────┘
+```mermaid
+flowchart TD
+    A["📡 Flight Telemetry Logs (.npy)"] --> B["🔍 Layer 1: Statistical Boundary Monitoring<br/>(Three-Sigma Rule)"]
+    B --> C["🌲 Layer 2: Multivariate Anomaly Detection<br/>(Isolation Forest)"]
+    C --> D["📈 Layer 3: Temporal Degradation Analysis<br/>(Rolling Variance)"]
+    D --> E["🎯 Unified Health Score Aggregator<br/><b>(Output Score: 0 – 100)</b>"]
+
+    style A fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#fff
+    style B fill:#0f172a,stroke:#3b82f6,stroke-width:2px,color:#fff
+    style C fill:#0f172a,stroke:#8b5cf6,stroke-width:2px,color:#fff
+    style D fill:#0f172a,stroke:#ec4899,stroke-width:2px,color:#fff
+    style E fill:#064e3b,stroke:#10b981,stroke-width:2px,color:#fff
 ```
 
 ### Layer 1 – Statistical Boundary Monitoring
